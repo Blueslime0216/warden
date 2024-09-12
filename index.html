@@ -113,21 +113,22 @@
             }, 2100);
         }
 
-        // 모든 동영상이 로드되면 자동 재생
-        window.onload = () => {
-            vid1.play();
-            vid2.play();
-            vid3.play();
-        };
         // 키 이벤트 처리
         window.addEventListener('keydown', (event) => {
-            // if (event.key === 'Tab' && !isPlaying) {
-            //     event.preventDefault();
-            //     vid1.play();
-            //     vid2.play();
-            //     vid3.play();
-            //     isPlaying = true;
-            // }
+            if (event.key === ' ') {  // 스페이스바 감지
+                event.preventDefault(); // 기본 스크롤 방지
+                if (isPlaying) {
+                    vid1.pause();
+                    vid2.pause();
+                    vid3.pause();
+                    isPlaying = false;
+                } else {
+                    vid1.play();
+                    vid2.play();
+                    vid3.play();
+                    isPlaying = true;
+                }
+            }
 
             // 숫자키로 순서 변경
             if (event.key === '1') {
@@ -136,8 +137,7 @@
                 switchVideo(2);
             } else if (event.key === '3') {
                 switchVideo(3);
-            } else if (isPlaying && !['1', '2', '3', 'Tab', 'Fn'].includes(event.key)) {
-                // 스페이스바와 숫자키 외 다른 키가 눌리면 자동으로 순차 변경
+            } else if (isPlaying && !['1', '2', '3', 'Tab', 'Fn', ' '].includes(event.key)) {
                 const nextVideo = (currentVideo % 3) + 1;
                 switchVideo(nextVideo);
             }
