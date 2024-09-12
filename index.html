@@ -113,15 +113,21 @@
             }, 2100);
         }
 
+        // 모든 동영상이 로드되면 자동 재생
+        window.onload = () => {
+            vid1.play();
+            vid2.play();
+            vid3.play();
+        };
         // 키 이벤트 처리
         window.addEventListener('keydown', (event) => {
-            if (event.key === 'Tab' && !isPlaying) {
-                event.preventDefault();
-                vid1.play();
-                vid2.play();
-                vid3.play();
-                isPlaying = true;
-            }
+            // if (event.key === 'Tab' && !isPlaying) {
+            //     event.preventDefault();
+            //     vid1.play();
+            //     vid2.play();
+            //     vid3.play();
+            //     isPlaying = true;
+            // }
 
             // 숫자키로 순서 변경
             if (event.key === '1') {
